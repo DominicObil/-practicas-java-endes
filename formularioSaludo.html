@@ -1,0 +1,29 @@
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/SaludoServlet")
+public class SaludoServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Obtener los parámetros del formulario
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+
+        // Crear el mensaje de saludo personalizado
+        String mensajeSaludo = "¡Hola, " + nombre + " " + apellido + "!";
+
+        // Configurar la respuesta HTTP
+        response.setContentType("text/html");
+
+        // Escribir la respuesta HTML
+        response.getWriter().println("<html><body>");
+        response.getWriter().println("<h2>" + mensajeSaludo + "</h2>");
+        response.getWriter().println("</body></html>");
+    }
+}
